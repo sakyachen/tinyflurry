@@ -1,0 +1,106 @@
+<html>
+<HEAD>
+<title>flurry Event Summary</title>
+{% autoescape None %}
+<style type="text/css">
+<!--
+.FONT1 {width:180px;height:25px;font-family:'Arial';}
+.FONT2 {width:100px;height:25px;font-family:'Arial';}
+.table3 {background-color:#0087E0;color:white;line-height:12px;font-family:'Arial';}
+.btns {width:100px; height:25px; color:#000000; font-size:20px;font-family:'Arial'; } 
+.tableentire { width:100%%; border:1px solid #CCCCCC;line-height:25px;cellpadding:5;font-family:'Arial';}
+.tablehead { background-color:#3D3D3D;color:white;font-family:'Arial';}
+div.table3 a:link {
+    color:#FFFFFF;
+    text-decoration:underline;
+    }
+div.table3 a:visited {
+    color:#FFFFFF;
+    text-decoration:none;
+    }
+div.table3 a:hover {
+    color:#74A4C8;
+    text-decoration:none;
+    }
+div.table3 a:active {
+    color:#FFFFFF;
+    text-decoration:none;
+    }
+-->
+</style>
+</HEAD>
+<body>
+
+
+<div align='center'  margin-top:10% class="table3">
+<br>
+<a href="flurry_event_summary.py" target="_blank">Flurry Event Summary<a>&nbsp&nbsp&nbsp&nbsp
+<a href="flurry_metric.py" target="_blank">Flurry Metric<a>
+<br>
+<br>
+</div>
+<br>
+
+<div align='center' margin-top:-10%% class="tablehead">
+<form name="appinfo" action="" method="get">
+
+产品:<select name="appname" class='FONT1' >
+    {% for app in appset %}
+            {% if appid==app %}
+            {% set t1= "SELECTED" %}
+            {% else %}
+            {% set t1= "" %}
+            {% end %}
+
+        {{ "<option value=" + app  + " " + t1 + ">" + appset[app] + "</option>"}}
+    {% end %}
+</select>
+
+版本: <select name="versionName" class='FONT2' >
+    {% for version in version_lst %}
+            {% if versionName==version %}
+            {% set t1= "SELECTED" %}
+            {% else %}
+            {% set t1= "" %}
+            {% end %}
+
+        {{ "<option value=" + version  + " " + t1 + ">" + version + "</option>"}}
+    {% end %}
+</select>
+
+开始日期:<input type="text" class='FONT2' name="startDate" value={{startDate}} >
+结束日期:<input type="text" class='FONT2' name="endDate" value={{endDate}} >
+
+是否计算uv比例: <select name="switch" class='FONT2' >
+    {% for sw in swtich_lst %}
+            {% if switch==sw %}
+            {% set t1= "SELECTED" %}
+            {% else %}
+            {% set t1= "" %}
+            {% end %}
+        {{ "<option value=" + sw  + " " + t1 + ">" + sw + "</option>"}}
+    {% end %}
+</select>
+
+<input type="submit" value="查询" class='btns' />
+</form>
+
+</div>
+<p></p>
+<table class="tableentire">
+<caption><bold>Flurry Event Statics</bold></caption>
+<tr class="tablehead">
+<th>产品</th>
+<th>起始日期</th>
+<th>结束日期</th>
+<th>事件名称</th>
+<th>事件数</th>
+<th>session数</th>
+<th>用户数</th>
+<th>版本</th>
+<th>总活跃用户数</th>
+</tr>
+{{res}}
+</table>
+</body>
+</html>
