@@ -9,7 +9,7 @@ Tinyflurry
 * events (users\sessions\counts by day)
 
 3.Conditions such as：
-* appnanme
+* app name
 * range of date
 * versions
 * event name
